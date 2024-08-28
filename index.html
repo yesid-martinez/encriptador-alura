@@ -66,6 +66,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     document.querySelector("#buttons button:nth-child(1)").addEventListener("click", encriptar);
     document.querySelector("#buttons button:nth-child(2)").addEventListener("click", desencriptar);
+    document.querySelector("#response-container button").addEventListener("click", copiarTexto);
 });
 
 function encriptar(e) { 
@@ -93,7 +94,26 @@ function desencriptar(e) {
         .replace(/ober/g, "o")
         .replace(/ufat/g, "u");
     
-        document.getElementById('response-output').value = textoDesencriptado;
+    document.getElementById('response-output').value = textoDesencriptado;
 }
+
+function copiarTexto() {
+let textarea = document.querySelector("#response-output");
+
+if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(textarea.value)
+        .then(() => {
+            alert("Texto copiado al portapapeles");
+        })
+        .catch(err => {
+            console.error("Error al copiar texto: ", err);
+        });
+        } else {
+            // Fallback para navegadores más antiguos
+            textarea.select();
+            document.execCommand("copy");
+            alert("Texto copiado al portapapeles");
+        }
+    }
 </script>
 </html>
