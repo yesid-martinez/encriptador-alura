@@ -44,14 +44,15 @@
         </div>
         <div class="container">
             <div id="card-container">
-                <!-- <div class="card">
+                <div class="card s-card">
                     <img src="assets/character-img.png" alt="Character image">
                     <div id="labels-container">
                         <h2>Ningún mensaje fue encontrado</h2>
                         <p>Ingresa el texto que desees encriptar o desencriptar.</p>
                     </div>
-                </div> -->
-                <div class="card">
+                </div>
+
+                <div class="card f-card hidden">
                     <div id="response-container">
                         <textarea id="response-output" disabled></textarea>
                         <button>Copiar</button>
@@ -80,7 +81,18 @@ function encriptar(e) {
         .replace(/o/g, "ober")
         .replace(/u/g, "ufat");
     
+    let defaultCard = document.querySelector('.f-card');
+    let responseCard = document.querySelector('.s-card');
+    
+    if (texto) {
     document.getElementById('response-output').value = textoEncriptado;
+    defaultCard.classList.remove('hidden');
+    responseCard.classList.add('hidden');
+    } else {
+    console.log('No hay texto');
+    defaultCard.classList.add('hidden');
+    responseCard.classList.remove('hidden');
+    }
 }
 
 function desencriptar(e) {
@@ -94,7 +106,17 @@ function desencriptar(e) {
         .replace(/ober/g, "o")
         .replace(/ufat/g, "u");
     
-    document.getElementById('response-output').value = textoDesencriptado;
+        let defaultCard = document.querySelector('.f-card');
+        let responseCard = document.querySelector('.s-card');
+    if (texto) {
+        defaultCard.classList.remove('hidden');
+        responseCard.classList.add('hidden');
+        document.getElementById('response-output').value = textoDesencriptado;
+    } else {
+        console.log('No hay texto');
+        defaultCard.classList.add('hidden');
+        responseCard.classList.remove('hidden');
+    }
 }
 
 function copiarTexto() {

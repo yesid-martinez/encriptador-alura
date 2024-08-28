@@ -197,6 +197,10 @@ form{
     }
 }
 
+.hidden{
+    display: none;
+}
+
 /* Media queries to responsive */
 @media screen and (min-width: 966px){
     #mobile-container{
