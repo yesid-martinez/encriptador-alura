@@ -73,7 +73,11 @@ document.addEventListener("DOMContentLoaded", function() {
 function encriptar(e) { 
     e.preventDefault(); 
 
-    let texto = document.getElementById("input-text").value;
+    let texto = document.getElementById("input-text").value.toLowerCase();
+
+    // Eliminar caracteres que no sean letras minúsculas sin tildes
+    texto = texto.replace(/[^a-z\s¡!¿?]/g, '');
+
     let textoEncriptado = texto
         .replace(/e/g, "enter")
         .replace(/i/g, "imes")
